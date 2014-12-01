@@ -8,16 +8,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
-import com.example.josu.mostrarimagen.R;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,7 +24,7 @@ public class Principal extends Activity {
 
     private ImageView iv;
     private EditText etUrl, etNombre;
-    private RadioButton rbPrivada, rbPublica;
+    private RadioButton rbPrivada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +34,6 @@ public class Principal extends Activity {
         etUrl = (EditText)findViewById(R.id.etUrl);
         etNombre = (EditText)findViewById(R.id.idGuardarComo);
         rbPrivada = (RadioButton)findViewById(R.id.rbPrivada);
-        rbPublica = (RadioButton)findViewById(R.id.rbPublica);
     }
 
     @Override
@@ -55,21 +49,7 @@ public class Principal extends Activity {
         iv.setImageBitmap((Bitmap)savedInstanceState.getParcelable("imagen"));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.principal, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        return super.onOptionsItemSelected(item);
-    }
-
     class HiloFoto extends AsyncTask<String, Void, Bitmap> {
-
-        private ProgressDialog dialogo;
 
         public Bitmap leerImagen(String urlPagina) {
             Bitmap imagen = null;
